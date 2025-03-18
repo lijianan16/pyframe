@@ -1,0 +1,107 @@
+config:
+   epic: 用户功能
+   feature: 用户模块
+   story: 用户信息接口
+ticket_1: #create environment by get
+   name: "env get"
+   url: "http://rap2api.taobao.org/app/mock/126135/api/search"
+   method: "post"
+   headers: {'Accept-Charset': 'UTF-8','Content-Type':'application/json'}
+   cookie:
+   #是否运行,y/n
+   run: y
+   #请求数据类型,body,json,file,params
+   type: json
+   data: {"train_date":"2024-07-07","from_station":"SZ","to_station":"SH","purpose_codes":"ADULT","partnerid":"12306com","method":"train_query","reqtime":"20220703092001","sign":" b4fb24449789a38427ac178fc5c4d1e0"}
+   dependen:
+      # 依赖的用例，无则为空
+       casename:
+       replace: $.code
+   #提取参数，无则为空
+   extract:
+       code:
+       purpose_codes:
+   actual:
+      #实际code
+       - code: $.code
+         check: eq
+       - purpose_codes: $.purpose_codes
+         check: eq
+   expected:
+      code: 100
+      msg: ADULT
+ticket_2: #create environment by get
+   name: "env get"
+   url: "http://rap2api.taobao.org/app/mock/126135/api/applysuply"
+   method: "post"
+   headers: {'Accept-Charset': 'UTF-8','Content-Type':'application/json'}
+   cookie:
+   #是否运行,y/n
+   run: y
+   #请求数据类型,body,json,file
+   type: json
+   data: {"orderid": "TGT_S57DF452F401045C","transactionid": "5AEA6654C8B","operationtype": "2","isdirectpay": "FALSE","serialnumber": "FT5AUA664D1005B93B0A8339","partnerid ": "xiaowuguicom ","method ": "train_confirm","reqtime": "20180503093126","sign":"916972e27 c445244f48124e36ded74c6"}
+   dependen:
+   #提取参数，无则为空
+   extract:
+       qkey: $.response.qkey
+   actual:
+      #实际code
+       - ordernumber: $.response.ordernumber
+         check: eq
+       - transactionid: $.response.transactionid
+         check: eq
+   expected:
+      ordernumber: EF411150
+      transactionid: 5AEA6654C8B
+ticket_3: #create environment by get
+   name: "env get"
+   url: "http://rap2api.taobao.org/app/mock/126135/api/ticketcallback"
+   method: "get"
+   headers: {'Accept-Charset': 'UTF-8','Content-Type':'application/json'}
+   cookie:
+   #是否运行,y/n
+   run: y
+   #请求数据类型,body,json,file,params
+   type: params
+   data: {"reqtime":"20220707100707250","sign":"d6977d6358b44f319407377f0bf7416c","orderid":"TGT_SEDFB1AAAF38E13AD6800","transactionid":"5AEA6EAF657DB","isSuccess":"Y"}
+   dependen:
+      # 依赖的用例，无则为空
+       casename:
+       replace:
+   #提取参数，无则为空
+   extract:
+       qkey:
+   actual:
+      #实际code
+       - status: $.status
+         check: eq
+   expected:
+      status: success
+ticket_4: #create environment by get
+   name: "env get"
+   url: "http://rap2api.taobao.org/app/mock/126135/api/applyChange"
+   method: "post"
+   headers: {'Accept-Charset': 'UTF-8','Content-Type':'application/json'}
+   cookie:
+   #是否运行,y/n
+   run: y
+   #请求数据类型,body,json,file
+   type: json
+   data: {"qkey": "{{qkey}}","method": "train_request_change","reqtime": "20180503102041","sign": "72e172c1114332e0f82bc5f3b296b333","isChangeTo": False,"partnerid": "tclycom","from_station_code": "","from_station_name ": "苏州 ","to_station_code ": "","to_station_name ": "上海 ","orderid ": "TGT_S93C2F2F317ECECF70542 ","transactionid ": "5AEA6C4F3F1E1 ","ordernumber ": "E120765683 ","change_checi ": "D8805 ","change_datetime ": "2022 - 05 - 0316: 35: 00 ","change_zwcode ": "O ","old_zwcode ": "O ","ticketinfo ": [{"passengersename ": "王春梅 ","passporttypeseid ": "1 ","passportseno ": "6000000000000 ","piaotype ": "1 ","old_ticket_no ": "E120765683108005D "}],"isasync ": "Y ","callbackurl ": "http: //t12306.com/trainOrder/services / changeOrderNotify ","reqtoken ": "FT5AUA71F90005BB5U410542 "}
+   dependen:
+      # 依赖的用例，无则为空
+        casename: ticket_2
+        replace:  $.qkey  #替换的值
+   #提取参数，无则为空
+   extract:
+       qkey:
+   actual:
+      #实际code
+       - method: $.train_request_change
+         check: eq
+       - transactionid: $.transactionid
+         check: eq
+   expected:
+      method: train_request_change
+      transactionid: 5AEA6C4F3F1E1

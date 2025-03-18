@@ -1,0 +1,53 @@
+config:
+   epic: 用户功能
+   feature: 用户模块
+   story: 用户信息接口
+
+userinfo_1: #create environment by get
+   name: "env get"
+   url: "/getInfo"
+   method: "get"
+   headers: {'Accept-Charset': 'UTF-8','Content-Type':'application/json'}
+   cookie:
+   #是否运行,y/n
+   run: y
+   #请求数据类型,body,json,file,params
+   type:
+   data:
+   dependen:
+      # 依赖的用例，无则为空
+       casename:
+       replace:
+   #提取参数，无则为空
+   extract:
+      #实际code
+   actual:
+       - code: $.code
+         check: eq
+
+   expected:
+      code: 200
+
+ticket_2: #create environment by get
+   name: "env get"
+   url: "/system/user/list"
+   method: "get"
+   headers: {'Accept-Charset': 'UTF-8','Content-Type':'application/json'}
+   cookie:
+   #是否运行,y/n
+   run: y
+   #请求数据类型,body,json,file
+   type:
+   data:
+   dependen:
+   #提取参数，无则为空
+   extract:
+       qkey:
+   actual:
+      #实际code
+       - code: $.code
+         check: eq
+
+   expected:
+      code: 200
+

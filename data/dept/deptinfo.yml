@@ -1,0 +1,31 @@
+config:
+   epic: 部门功能
+   feature: 部门模块
+   story: 部门信息接口
+userinfo_1: #create environment by get
+   name: "env delete"
+   url: "/system/user/deptTree"
+   method: "get"
+   headers: {'Accept-Charset': 'UTF-8','Content-Type':'application/json'}
+   cookie:
+   #是否运行,y/n
+   run: y
+   #请求数据类型,body,json,file,params
+   type:
+   data:
+   dependen:
+      # 依赖的用例，无则为空
+       casename:
+       replace:
+   #提取参数，无则为空
+   extract:
+      #实际code
+   actual:
+       - code: $.code
+         check: eq
+       - msg: $.msg
+         check: eq
+
+   expected:
+      code: 200
+      msg: 操作成功

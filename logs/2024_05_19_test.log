@@ -1,0 +1,6 @@
+20240519 14:41:09 - MainProcess | MainThread | requestsession.httpreq:23 - INFO -0.35508
+20240519 14:41:09 - MainProcess | MainThread | conftest.get_token:32 - INFO -Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMzEzNDQyLTk2YjQtNDRmZC04MWNiLWJjMjYyN2FiZjllYiJ9.YWz4Bat6jg3ifKqo_WrCqt19qKKzkMY3j5lJ-39TyCh67T9UEQsS_h3YJ0wWPhWK9RTOYisOfa46YA4PdMIjEA
+20240519 14:41:10 - MainProcess | MainThread | requestsession.httpreq:23 - INFO -0.018174
+20240519 14:41:10 - MainProcess | MainThread | requestsession.httpreq:23 - INFO -0.051536
+20240519 14:41:10 - MainProcess | MainThread | requestsession.httpreq:23 - INFO -0.011324
+20240519 14:41:10 - MainProcess | MainThread | requestsession.httpreq:23 - INFO -0.024217

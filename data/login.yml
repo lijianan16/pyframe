@@ -1,0 +1,60 @@
+config:
+   epic: 用户功能
+   feature: 用户模块
+   story: 用户信息接口
+loging_1: #create environment by get
+   name: "env get"
+   url: "/aiplat/pro/2"
+   method: "get"
+   headers: {'Accept-Charset': 'UTF-8','Content-Type':'application/json'}
+   cookie:
+   #是否运行,y/n
+   run: y
+   #请求数据类型,body,json,file
+   type: params
+   data: { "pro_no":"{{pro_no}}","pro_name":"大牛测试测试"}
+   dependen:
+      # 依赖的用例，无则为空
+      - casename: test01
+        replace:
+   #提取参数，无则为空
+   extract:
+       uuid: $.uuid
+       img: $.img
+   actual:
+      #实际code
+       - code: $.code
+         check: eq
+       - msg: $.code
+         check: eq
+   expected:
+      code: 200
+      msg: success
+loging_2: #create environment by get
+   name: "env get"
+   url: "/aiplat/pro/2"
+   method: "get"
+   headers: {'Accept-Charset': 'UTF-8','Content-Type':'application/json'}
+   cookie:
+   #是否运行,y/n
+   run: y
+   #请求数据类型,body,json,file
+   type: params
+   data: { "pro_no":"{{pro_no}}","pro_name":"大牛测试测试"}
+   dependen:
+      # 依赖的用例，无则为空
+      - casename: test01
+        replace:
+   #提取参数，无则为空
+   extract:
+       uuid: $.uuid
+       img: $.img
+   actual:
+      #实际code
+       - code: $.code
+         check: eq
+       - msg: $.code
+         check: eq
+   expected:
+      code: 200
+      msg: success
